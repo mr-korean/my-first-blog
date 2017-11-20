@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
-from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm
 
 # Create your views here.
@@ -27,7 +26,7 @@ def post_new(request):
             return render(request, 'blog/post_edit.html', {'form':form})
 
 def post_edit(request, pk):
-     post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
