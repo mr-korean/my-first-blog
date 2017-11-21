@@ -9,6 +9,4 @@ urlpatterns = [
     url(r'^drafts/$', views.post_draft_list, name='post_draft_list'),
     url(r'^post/(?P<pk>\d+)/publish/$', views.post_publish, name='post_publish'),
     url(r'^post/(?P<pk>\d+)/remove/$', views.post_remove, name='post_remove'),
-    # 도메인 다음에 아무것도 없을 경우(정규 표현식),
-    # views 파일의 post_list 클래스로 이동시킨다.
 ]

@@ -50,5 +50,3 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
-# def는 자바스크립트의 function에 해당한다.
-# 위의 시간대에 따라 받아온 게시글의 행렬을, 아래의 형태로 post_list.html에 뿌린다.
