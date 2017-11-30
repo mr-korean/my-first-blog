@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^polls/', include('polls.urls')),
-    # url(r'^$', views.index, name='index),
+    url(r'^blog/', include('blog.urls', namespace="blog")),
+    url(r'^polls/', include('polls.urls', namespace="polls")),
+    url(r'^books/', include('books.urls', namespace="books")),
 ]
