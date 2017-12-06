@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 # Create your models here.
 
-class Post(models.Model):
+class Bost(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField('Content', blank=True)
     # https://goo.gl/GKVaAa 처음 생성될때 자동으로 현재 시간을 설정
@@ -30,12 +30,12 @@ class Post(models.Model):
         # get_previous_by_<필드명> 메서드
         try:
             return self.get_previous_by_create_date()
-        except Post.DoesNotExist:
+        except Bost.DoesNotExist:
             return None
 
     def get_next_post(self):
         # get_next_by_<필드명> 메서드
         try:
             return self.get_next_by_create_date()
-        except Post.DoesNotExist:
+        except Bost.DoesNotExist:
             return None
