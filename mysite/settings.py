@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+# -*- coding: UTF-8 -*-
 
 import os
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'polls.apps.PollsConfig',
     'books',
+    'board.apps.BoardConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
+# 로그인을 누르면 이동하게 될 사이트. 현재는 홈으로 이동하게 되어 있다.
+# 로그인을 할 때마다 회원정보 변경으로 가면 이상하니까.

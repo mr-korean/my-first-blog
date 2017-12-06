@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+신규 가입
+{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<form method="post" action="."> {% csrf_token %}
+    {% if form.errors %}
+    <p>정확하게 입력하셨는지 다시 확인하세요.</p>
+    {% endif %}
+    <p>로그인에 사용할 아이디와 비밀번호를 입력하세요.</p>
+    <fieldset>
+        {{ form.username.label_tag }} {{ form.username }}
+        <br>
+        {{ form.password1.label_tag }} {{ form.password1 }}
+        <br>
+        {{ form.password2.label_tag }} {{ form.password2 }}
+    </fieldset>
+    <div><input type="submit" value="회원가입"></div>
+</form>
+{% endblock %}
