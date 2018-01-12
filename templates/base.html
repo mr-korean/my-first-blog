@@ -1,45 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load staticfiles %}
-    <link rel="stylesheet" href="{% block base_style %}{% static "css/base.css" %}{% endblock %}">
+    <link rel="stylesheet" href="{% block base_style %}{% static 'css/base.css' %}{% endblock %}">
     <link rel="stylesheet" type="text/css" href="{% block extra_style %}{% endblock %}" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}장고 게시판{% endblock %}</title>
 </head>
+
 <body>
-    <div id="sidebar" class="jumbotron">
-        {% block sidebar %}
-        <ul>
-            <li><mark><a href="/">책관리 시스템 홈</a></mark></li>
-            <li><a href="/admin/">관리자 페이지</a></li>
-        </ul>
-        {% endblock %}
-        <br>
-    </div>
-    <nav class="clearfix">
-        <ul>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">DJANGO PROJECT v12.07</a>
+            </div>
+        </div>
+        <ul class="nav navbar-nav">
             <li>
-                <a href="{% url 'home' %}">홈</a>
+                <a href="{% url 'home' %}">
+                    <span class="glyphicon glyphicon-home"></span></a>
             </li>
-            {% if user.is_active %}
-            <li>{% firstof user.get_short_name user.get_username %}님 입장.</li>
             <li>
-                <a href="{% url 'password_change' %}">비밀번호 변경</a>
+                <a href="{% url 'board:index' %}">
+                    <span class="glyphicon glyphicon-list-alt"></span>게시판</a>
+            </li>
+            <li>
+                <a href="{% url 'books:index' %}">책들</a>
+            </li>
+            <li>
+                <a href="{% url 'polls:index' %}">투표</a>
+            </li>
+            <li>
+                <a href="{% url 'blog:index' %}">블로그</a>
             </li>
             {% if user.is_superuser %}
             <li>
-                <a href="{% url 'admin:index' %}">관리자</a>
+                <a href="{% url 'admin:index' %}">
+                    <i class="fa fa-cog fa-spin"></i>페이지 관리</a>
             </li>
             {% endif %}
+        </ul>
+        <ul class="nav navbar-nav" style="float:right;">
+            {% if user.is_active %}
+            <li>
+                <a href="{% url 'password_change' %}">비밀번호 변경</a>
+            </li>
             <li>
                 <a href="{% url 'logout' %}">로그아웃</a>
             </li>
             {% else %}
-            <li>환영합니다.</li>
             <li>
                 <a href="{% url 'login' %}">로그인</a>
             </li>
@@ -49,18 +70,32 @@
             {% endif %}
         </ul>
     </nav>
-    <nav class="clearfix"
-        <ul>
-            <li>
-                <a href="{% url 'board:index' %}">게시판</a>
-            </li>
-        </ul>
-    </nav>
-    <div>{% block subtitle %}{% endblock %}</div>    
+    {% if user.is_active %}
+    <div class="container alert alert-success">
+            <p>{% firstof user.get_short_name user.get_username %}님, 환영합니다.</p>
+    </div>
+    {% endif %}
+    {% if user.is_superuser %}
+    <div class="container alert alert-warning">
+            <p>관리자 계정으로 로그인하셨습니다. 페이지 관리에 주의해 주십시오.</p>
+    </div>
+    {% endif %}
+    <div class="container alert alert-info">
+        <p>관리자께서는 로그인하여 주십시오.</p>
+    </div>
+
+    <div>
+        <h1>{% block subtitle %}{% endblock %}</h1>
+    </div>
     <div>
         {% block content %}{% endblock %}
     </div>
     {% block footer %}
-    <div>&copy; 2017. (이름) All rights reserved.</div>{% endblock %}
+    <div>&copy; 2017. Django & LHGⓒ All Rights Reserved.</div>
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block javascript %}{% endblock %}
 </body>
+
 </html>

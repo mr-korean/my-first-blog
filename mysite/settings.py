@@ -123,7 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join (BASE_DIR, 'static')]
 
 LOGIN_REDIRECT_URL = '/'
 # 로그인을 누르면 이동하게 될 사이트. 현재는 홈으로 이동하게 되어 있다.

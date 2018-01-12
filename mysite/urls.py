@@ -16,18 +16,20 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views
-from mysite.views import HomeView, UserRegisterView, UserRegisterDoneView
+from mysite.views import HomeView, UserRegisterView, UserRegisterDoneView, validate_username
 
 urlpatterns = [
+    url(r'^$', HomeView.as_view(), name='home'),
+    
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
     url(r'^accounts/register/$', UserRegisterView.as_view(), name='register'),
     url(r'^accounts/register/done/$', UserRegisterDoneView.as_view(), name='register_done'),
+    url(r'^ajax/validate_username/$', validate_username, name="validate_username"),
     url(r'^blog/', include('blog.urls', namespace="blog")),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^books/', include('books.urls', namespace="books")),
-    url(r'^board/', include('board.urls', namespace='board')),
-    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^board/', include('board.urls', namespace="board")),
 ]

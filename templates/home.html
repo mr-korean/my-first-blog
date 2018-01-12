@@ -3,12 +3,8 @@
 {% load staticfiles %}
 
 {% block content %}
-    <h2>장고 어플리케이션</h2>
-    <ul>
-        {% for appname in object_list %}
-        {% with appname|add:":"|add:"index" as urlvar %}
-            <li><a href="{% url urlvar %}">{{ appname }}</a></li>
-        {% endwith %}
-        {% endfor %}
-    </ul>
+<div class="jumbotron">
+    <h2>메인 페이지입니다.</h2>
+    <p>말 잘하는 사람이 홈페이지 소개문구 작성할 예정</p>
+</div>
 {% endblock content %}

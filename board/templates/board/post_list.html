@@ -17,7 +17,7 @@
     {% endif %}
     <!-- https://goo.gl/BRFiJV 의 Context부분 참고 -->
     <!-- https://goo.gl/cS47NK page 객체에 number -->
-    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    {{ page_obj.number }} | {{ page_obj.paginator.num_pages }}
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}">다음</a>
     {% endif %}
