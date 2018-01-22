@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from django.shortcuts import render
 # django.views.generic 는 데이터를 보여주기 위한 사전에 정의된 뷰이다. 일반적으로 프로젝트에서 많이 사용되는 뷰가 있다.
 from django.views.generic import ListView, DetailView, TemplateView

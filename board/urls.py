@@ -7,8 +7,7 @@ urlpatterns = [
     url(r'^$', BostList.as_view(), name='index'),
 
     # Example: /board/?page=3
-    # 참고 https://goo.gl/BRFiJV
-    # view에 paginate_by가 지정되어 있는 경우 페이지 객체수를 전달한다.
+    # https://goo.gl/BRFiJV
     url(r'^postlist/page(?P<page>[0-9]+)/$', BostList.as_view(), name='post_list'),
 
     # # Example: /post/add/
